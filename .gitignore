@@ -1,0 +1,4 @@
+geoserver-data/*
+geotools/*
+geoserver_data-dir.tar
+*.code-workspace
