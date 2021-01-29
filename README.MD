@@ -11,7 +11,7 @@ Docker swarm secrets are used to manage database credentials within the app-sche
 interpolates to correct value from the secret file. 
 
 
-./app-schema.properties.
+Create `./app-schema.properties` as such:
 ```
 postgis.host = myhost.com
 postgis.port = 5432
@@ -21,3 +21,5 @@ postgis.passwd = mypass
 ```
 
 `$ docker secret create postgis app-schema.properties`
+
+[app-schema property interpoloation ref](https://docs.geoserver.org/stable/en/user/data/app-schema/property-interpolation.html)
