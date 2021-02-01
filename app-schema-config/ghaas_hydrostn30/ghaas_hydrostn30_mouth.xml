@@ -48,7 +48,7 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>ghaas.xsd</schemaUri>
+            <schemaUri>ghaas_mouth.xsd</schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>

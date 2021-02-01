@@ -48,7 +48,7 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>ghaas.xsd</schemaUri>
+            <schemaUri>ghaas_subbasin.xsd</schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
@@ -233,6 +233,213 @@
                         <OCQL>strConcat('Subbasin.', id)</OCQL>
                     </idExpression>
                 </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ghaas:hydrologicalPolygonModelOutputAnnualValues</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>id</OCQL>
+                        <linkElement>ghaas:HydrologicalPolygonModelOutputAnnual</linkElement>
+                        <linkField>FEATURE_LINK</linkField>
+                    </sourceExpression>
+                    <isMultiple>true</isMultiple>
+                </AttributeMapping>
+            </attributeMappings>
+        </FeatureTypeMapping>
+        
+        <FeatureTypeMapping>
+            <sourceDataStore>datastore</sourceDataStore>
+            <sourceType>subbasin_annual_all</sourceType>
+            <targetElement>ghaas:HydrologicalPolygonModelOutputAnnual</targetElement>
+            <attributeMappings>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:year
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>year</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:zoneGridValue
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>zonegridvalue</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:zoneArea
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>zonearea</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:evapotranspirationZonalMean
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>evapotranspiration_zonalmean</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:evapotranspirationZonalMin
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>evapotranspiration_zonalmin</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:evapotranspirationZonalMax
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>evapotranspiration_zonalmax</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:rainpetZonalMean
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>rainpet_zonalmean</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:rainpetZonalMin
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>rainpet_zonalmin</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:rainpetZonalMax
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>rainpet_zonalmax</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:runoffZonalMean
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>runoff_zonalmean</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:runoffZonalMin
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>runoff_zonalmin</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:runoffZonalMax
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>runoff_zonalmax</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:snowZonalMean
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>snow_zonalmean</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:snowZonalMin
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>snow_zonalmin</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:snowZonalMax
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>snow_zonalmax</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:soilMoistureZonalMean
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>soilmoisture_zonalmean</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:soilMoistureZonalMin
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>soilmoisture_zonalmin</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:soilMoistureZonalMax
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>soilmoisture_zonalmax</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:relativeSoilMoistureZonalMean
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>relative_soilmoisture_zonalmean</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:relativeSoilMoistureZonalMin
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>relative_soilmoisture_zonalmin</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:relativeSoilMoistureZonalMax
+                    </targetAttribute>
+                    <sourceExpression>
+                        <OCQL>relative_soilmoisture_zonalmax</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>
+                        ghaas:HydrologicalPolygonModelOutputAnnual
+                    </targetAttribute>
+                    <idExpression>
+                        <OCQL>strConcat('HydrologicalPolygonModelOutputAnnual.', id)</OCQL>
+                    </idExpression>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>FEATURE_LINK</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>sampleid</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+
             </attributeMappings>
         </FeatureTypeMapping>
     </typeMappings>
