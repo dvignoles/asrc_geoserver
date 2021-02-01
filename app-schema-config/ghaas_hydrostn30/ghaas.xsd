@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:ghaas="ghaas"
+  targetNamespace="ghaas"
+  elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+  <xs:import namespace="http://www.opengis.net/gml/3.2"
+    schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+
+  <xs:element name="Mouth" type="ghaas:MouthType"
+  substitutionGroup="gml:AbstractFeature" />
+
+  <xs:element name="Subbasin" type="ghaas:SubbasinType"
+  substitutionGroup="gml:AbstractFeature" />
+
+  <xs:element name="Discharge" type="ghaas:DischargeType"
+    substitutionGroup="gml:AbstractFeature" />
+
+  <xs:complexType name="MouthType">
+    <xs:complexContent>
+      <xs:extension base="gml:AbstractFeatureType">
+        <xs:sequence>
+          <xs:element name="basinOrder" minOccurs="1" maxOccurs="1"
+            type="xs:integer" />
+          <xs:element name="color" minOccurs="1" maxOccurs="1"
+            type="xs:integer" />
+          <xs:element name="basinLength" minOccurs="1" maxOccurs="1"
+            type="xs:decimal" />
+          <xs:element name="basinArea" minOccurs="1" maxOccurs="1"
+            type="xs:decimal" />
+          <xs:element name="geom" type="gml:GeometryPropertyType"
+            minOccurs="1" maxOccurs="1" />
+          <xs:element name="dischargeValues" minOccurs="0" maxOccurs="unbounded"
+            type="ghaas:DischargePropertyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SubbasinType">
+  <xs:complexContent>
+    <xs:extension base="gml:AbstractFeatureType">
+      <xs:sequence>
+        <xs:element name="gridValue" minOccurs="1" maxOccurs="1"
+          type="xs:integer" />
+        <xs:element name="gridArea" minOccurs="1" maxOccurs="1"
+          type="xs:decimal" />
+        <xs:element name="gridPercent" minOccurs="1" maxOccurs="1"
+          type="xs:decimal" />
+        <xs:element name="perimeter" minOccurs="1" maxOccurs="1"
+          type="xs:decimal" />
+        <xs:element name="vertexNum" minOccurs="1" maxOccurs="1"
+          type="xs:integer"/>
+        <xs:element name="basinId" minOccurs="1" maxOccurs="1"
+          type="xs:integer"/>
+        <xs:element name="streamOrder" minOccurs="1" maxOccurs="1"
+          type="xs:integer"/>
+        <xs:element name="fromXCoord" minOccurs="1" maxOccurs="1"
+          type="xs:decimal"/>
+        <xs:element name="fromYCoord" minOccurs="1" maxOccurs="1"
+          type="xs:decimal"/>
+        <xs:element name="toXCoord" minOccurs="1" maxOccurs="1"
+          type="xs:decimal"/>
+        <xs:element name="toYCoord" minOccurs="1" maxOccurs="1"
+          type="xs:decimal"/>
+        <xs:element name="cellId" minOccurs="1" maxOccurs="1"
+          type="xs:integer"/>
+        <xs:element name="basinName" minOccurs="1" maxOccurs="1"
+          type="xs:string"/>
+        <xs:element name="order" minOccurs="1" maxOccurs="1"
+          type="xs:integer"/>
+        <xs:element name="color" minOccurs="1" maxOccurs="1"
+          type="xs:integer"/>
+        <xs:element name="numberOfCells" minOccurs="1" maxOccurs="1"
+          type="xs:integer"/>
+        <xs:element name="stnMainstemLength" minOccurs="1" maxOccurs="1"
+          type="xs:decimal"/>
+        <xs:element name="stnCatchmentArea" minOccurs="1" maxOccurs="1"
+          type="xs:decimal"/>
+        <xs:element name="stnInterstationArea" minOccurs="1" maxOccurs="1"
+          type="xs:decimal"/>
+        <xs:element name="nextStation" minOccurs="1" maxOccurs="1"
+          type="xs:integer"/>
+        <xs:element name="geom" type="gml:GeometryPropertyType"
+          minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+
+
+  <xs:complexType name="DischargeType">
+    <xs:complexContent>
+      <xs:extension base="gml:AbstractFeatureType">
+        <xs:sequence>
+          <xs:element name="year" minOccurs="1" maxOccurs="1"
+            type="xs:integer" />
+          <xs:element name="dischargeValue" type="xs:decimal"
+            minOccurs="1" maxOccurs="1" />
+          <xs:element name="samplingMouth" minOccurs="0" maxOccurs="1"
+            type="ghaas:MouthPropertyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DischargePropertyType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="ghaas:Discharge" />
+    </xs:sequence>
+    <xs:attributeGroup ref="gml:AssociationAttributeGroup" />
+  </xs:complexType>
+
+  <xs:complexType name="MouthPropertyType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="ghaas:Mouth" />
+    </xs:sequence>
+    <xs:attributeGroup ref="gml:AssociationAttributeGroup" />
+  </xs:complexType>
+
+</xs:schema>
