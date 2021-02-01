@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3.8'
 
 volumes:
    geoserver-data:
@@ -13,16 +13,6 @@ services:
         - /asrc/ecr/danielv/geoserver_volumes/ghaas:/opt/geoserver/ghaas
       ports:
         - "9999:8080"
-      networks:
-        - geo-net
       restart: on-failure
       env_file:
         - geoserver.env
-      healthcheck:
-        test: curl --fail -s http://localhost:8080/ || exit 1
-        interval: 1m30s
-        timeout: 10s
-        retries: 3
-networks:
-    geo-net:
-        driver: bridge
