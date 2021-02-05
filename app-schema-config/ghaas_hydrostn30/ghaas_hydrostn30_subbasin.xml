@@ -48,7 +48,7 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>ghaas_subbasin.xsd</schemaUri>
+            <schemaUri>https://raw.githubusercontent.com/dvignoles/asrc_geoserver/schema/app-schema-config/ghaas_hydrostn30/ghaas_subbasin.xsd</schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
@@ -221,9 +221,7 @@
                     <targetAttribute>
                         ghaas:geom
                     </targetAttribute>
-                    <sourceExpression>
-                        <OCQL>geom</OCQL>
-                    </sourceExpression>
+                    <sourceExpression><OCQL>geom</OCQL></sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>
