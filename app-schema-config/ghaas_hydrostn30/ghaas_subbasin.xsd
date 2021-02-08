@@ -8,8 +8,6 @@
 
   <xs:element name="Subbasin" type="ghaas:SubbasinType" substitutionGroup="gml:AbstractFeature" />
 
-  <xs:element name="HydrologicalPolygonModelOutputAnnual" type="ghaas:HydrologicalPolygonModelOutputAnnualType" substitutionGroup="gml:AbstractFeature" />
-
   <xs:complexType name="SubbasinType">
     <xs:complexContent>
       <xs:extension base="gml:AbstractFeatureType">
@@ -40,6 +38,15 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+
+  <xs:complexType name="SubbasinPropertyType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="ghaas:Subbasin" />
+    </xs:sequence>
+    <xs:attributeGroup ref="gml:AssociationAttributeGroup" />
+  </xs:complexType>
+
+  <xs:element name="HydrologicalPolygonModelOutputAnnual" type="ghaas:HydrologicalPolygonModelOutputAnnualType" substitutionGroup="gml:AbstractFeature" />
 
   <xs:complexType name="HydrologicalPolygonModelOutputAnnualType">
     <xs:complexContent>
@@ -75,13 +82,6 @@
   <xs:complexType name="HydrologicalPolygonModelOutputAnnualPropertyType">
     <xs:sequence minOccurs="0">
       <xs:element ref="ghaas:HydrologicalPolygonModelOutputAnnual" />
-    </xs:sequence>
-    <xs:attributeGroup ref="gml:AssociationAttributeGroup" />
-  </xs:complexType>
-
-  <xs:complexType name="SubbasinPropertyType">
-    <xs:sequence minOccurs="0">
-      <xs:element ref="ghaas:Subbasin" />
     </xs:sequence>
     <xs:attributeGroup ref="gml:AssociationAttributeGroup" />
   </xs:complexType>
