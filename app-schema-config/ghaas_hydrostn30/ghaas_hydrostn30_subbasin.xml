@@ -8,7 +8,7 @@
         </Namespace>
         <Namespace>
             <prefix>ghaas</prefix>
-            <uri>ghaas</uri>
+            <uri>uri:ghaas:1.0</uri>
         </Namespace>
     </namespaces>
     <sourceDataStores>

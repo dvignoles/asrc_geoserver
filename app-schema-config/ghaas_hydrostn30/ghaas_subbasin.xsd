@@ -2,7 +2,7 @@
 <xs:schema version="1.0"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:gml="http://www.opengis.net/gml/3.2"
-  xmlns:ghaas="https://raw.githubusercontent.com/dvignoles/asrc_geoserver/schema/app-schema-config/ghaas_hydrostn30/ghaas_subbasin.xsd" targetNamespace="ghaas" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  xmlns:ghaas="uri:ghaas:1.0" targetNamespace="uri:ghaas:1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
 
   <xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
 
