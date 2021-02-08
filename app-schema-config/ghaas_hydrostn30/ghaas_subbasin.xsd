@@ -73,6 +73,7 @@
           <xs:element name="relativeSoilMoistureZonalMean" type="xs:decimal" minOccurs="1" maxOccurs="1" />
           <xs:element name="relativeSoilMoistureZonalMin" type="xs:decimal" minOccurs="1" maxOccurs="1" />
           <xs:element name="relativeSoilMoistureZonalMax" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="samplingSubbasin" minOccurs="0" maxOccurs="1" type="ghaas:SubbasinPropertyType" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
