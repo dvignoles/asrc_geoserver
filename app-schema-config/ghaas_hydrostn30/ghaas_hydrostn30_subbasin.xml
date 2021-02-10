@@ -48,7 +48,7 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>https://raw.githubusercontent.com/dvignoles/asrc_geoserver/schema/app-schema-config/ghaas_hydrostn30/ghaas_subbasin.xsd</schemaUri>
+            <schemaUri>https://raw.githack.com/dvignoles/asrc_geoserver/main/app-schema-config/ghaas_hydrostn30/ghaas_subbasin.xsd</schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
