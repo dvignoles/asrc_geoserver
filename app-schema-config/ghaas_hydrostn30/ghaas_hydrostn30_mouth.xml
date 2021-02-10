@@ -48,7 +48,7 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>ghaas.xsd</schemaUri>
+            <schemaUri>ghaas_mouth.xsd</schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
@@ -73,7 +73,7 @@
                         <OCQL>color</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
-                 <AttributeMapping>
+                <AttributeMapping>
                     <targetAttribute>
                         ghaas:basinLength
                     </targetAttribute>
@@ -81,7 +81,7 @@
                         <OCQL>basinlength</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
-                 <AttributeMapping>
+                <AttributeMapping>
                     <targetAttribute>
                         ghaas:basinArea
                     </targetAttribute>
@@ -89,7 +89,7 @@
                         <OCQL>basinarea</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
-                 <AttributeMapping>
+                <AttributeMapping>
                     <targetAttribute>
                         ghaas:geom
                     </targetAttribute>
@@ -108,9 +108,9 @@
                 <AttributeMapping>
                     <targetAttribute>ghaas:dischargeValues</targetAttribute>
                     <sourceExpression>
-                    <OCQL>id</OCQL>
-                    <linkElement>ghaas:Discharge</linkElement>
-                    <linkField>FEATURE_LINK</linkField>
+                        <OCQL>id</OCQL>
+                        <linkElement>ghaas:Discharge</linkElement>
+                        <linkField>FEATURE_LINK</linkField>
                     </sourceExpression>
                     <isMultiple>true</isMultiple>
                 </AttributeMapping>
@@ -129,7 +129,7 @@
                         <OCQL>year</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
-                 <AttributeMapping>
+                <AttributeMapping>
                     <targetAttribute>
                         ghaas:dischargeValue
                     </targetAttribute>

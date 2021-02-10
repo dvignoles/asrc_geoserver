@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:ghaas="uri:ghaas:1.0" targetNamespace="uri:ghaas:1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+  <xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+
+  <xs:element name="Subbasin" type="ghaas:SubbasinType" substitutionGroup="gml:AbstractFeature" />
+
+  <xs:complexType name="SubbasinType">
+    <xs:complexContent>
+      <xs:extension base="gml:AbstractFeatureType">
+        <xs:sequence>
+          <xs:element name="gridValue" minOccurs="1" maxOccurs="1" type="xs:integer" />
+          <xs:element name="gridArea" minOccurs="1" maxOccurs="1" type="xs:decimal" />
+          <xs:element name="gridPercent" minOccurs="1" maxOccurs="1" type="xs:decimal" />
+          <xs:element name="perimeter" minOccurs="1" maxOccurs="1" type="xs:decimal" />
+          <xs:element name="vertexNum" minOccurs="1" maxOccurs="1" type="xs:integer"/>
+          <xs:element name="basinId" minOccurs="1" maxOccurs="1" type="xs:integer"/>
+          <xs:element name="streamOrder" minOccurs="1" maxOccurs="1" type="xs:integer"/>
+          <xs:element name="fromXCoord" minOccurs="1" maxOccurs="1" type="xs:decimal"/>
+          <xs:element name="fromYCoord" minOccurs="1" maxOccurs="1" type="xs:decimal"/>
+          <xs:element name="toXCoord" minOccurs="1" maxOccurs="1" type="xs:decimal"/>
+          <xs:element name="toYCoord" minOccurs="1" maxOccurs="1" type="xs:decimal"/>
+          <xs:element name="cellId" minOccurs="1" maxOccurs="1" type="xs:integer"/>
+          <xs:element name="basinName" minOccurs="1" maxOccurs="1" type="xs:string"/>
+          <xs:element name="order" minOccurs="1" maxOccurs="1" type="xs:integer"/>
+          <xs:element name="color" minOccurs="1" maxOccurs="1" type="xs:integer"/>
+          <xs:element name="numberOfCells" minOccurs="1" maxOccurs="1" type="xs:integer"/>
+          <xs:element name="stnMainstemLength" minOccurs="1" maxOccurs="1" type="xs:decimal"/>
+          <xs:element name="stnCatchmentArea" minOccurs="1" maxOccurs="1" type="xs:decimal"/>
+          <xs:element name="stnInterstationArea" minOccurs="1" maxOccurs="1" type="xs:decimal"/>
+          <xs:element name="nextStation" minOccurs="1" maxOccurs="1" type="xs:integer"/>
+          <xs:element name="geom" type="gml:GeometryPropertyType" minOccurs="1" maxOccurs="1" />
+          <xs:element name="hydrologicalPolygonModelOutputAnnualValues" minOccurs="0" maxOccurs="unbounded" type="ghaas:HydrologicalPolygonModelOutputAnnualPropertyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SubbasinPropertyType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="ghaas:Subbasin" />
+    </xs:sequence>
+    <xs:attributeGroup ref="gml:AssociationAttributeGroup" />
+  </xs:complexType>
+
+  <xs:element name="HydrologicalPolygonModelOutputAnnual" type="ghaas:HydrologicalPolygonModelOutputAnnualType" substitutionGroup="gml:AbstractFeature" />
+
+  <xs:complexType name="HydrologicalPolygonModelOutputAnnualType">
+    <xs:complexContent>
+      <xs:extension base="gml:AbstractFeatureType">
+        <xs:sequence>
+          <xs:element name="year" minOccurs="1" maxOccurs="1" type="xs:integer" />
+          <xs:element name="zoneGridValue" type="xs:integer" minOccurs="1" maxOccurs="1" />
+          <xs:element name="zoneArea" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="evapotranspirationZonalMean" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="evapotranspirationZonalMin" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="evapotranspirationZonalMax" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="rainpetZonalMean" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="rainpetZonalMin" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="rainpetZonalMax" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="runoffZonalMean" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="runoffZonalMin" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="runoffZonalMax" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="snowZonalMean" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="snowZonalMin" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="snowZonalMax" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="soilMoistureZonalMean" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="soilMoistureZonalMin" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="soilMoistureZonalMax" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="relativeSoilMoistureZonalMean" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="relativeSoilMoistureZonalMin" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="relativeSoilMoistureZonalMax" type="xs:decimal" minOccurs="1" maxOccurs="1" />
+          <xs:element name="samplingSubbasin" minOccurs="0" maxOccurs="1" type="ghaas:SubbasinPropertyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HydrologicalPolygonModelOutputAnnualPropertyType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="ghaas:HydrologicalPolygonModelOutputAnnual" />
+    </xs:sequence>
+    <xs:attributeGroup ref="gml:AssociationAttributeGroup" />
+  </xs:complexType>
+
+</xs:schema>
