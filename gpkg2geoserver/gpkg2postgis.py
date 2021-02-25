@@ -99,6 +99,9 @@ def import_gpkg(pg_con, gpkg):
     Args:
         pg_con (str): gdal postgres driver connection string, see https://gdal.org/drivers/vector/pg.html
         gpkg (Path): geopackage file
+    
+    Returns:
+        list: list of newly created/replaced postgres table names in schema.table form
     """
 
     gpkg_meta = extract_gpkg_meta(gpkg)
