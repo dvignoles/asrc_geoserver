@@ -1,4 +1,5 @@
 #!/bin/bash
+# REPLACED BY gpkg2postgis.py
 #input: "postgres connection string" geographyregion_{model}/'geography'_resolution.gpkg
 
 # https://gdal.org/drivers/vector/pg.html
@@ -12,8 +13,8 @@ import_gpkg () {
     --config PG_USE_COPY YES \
     -nlt PROMOTE_TO_MULTI \
     -nln $3 \
+    -doo CLOSING_STATEMENTS="$4" \
     $1 $2
-    #-doo CLOSING_STATEMENTS="$4" \
 }
 
 # shorten model name syntax to meet postgres tablename character limit
@@ -43,13 +44,16 @@ if [[ "$model" == "geography" ]]
 then 
     while read p; do
         tblname="${geography}.${p}_${resolution}"
-        #closing_sql="UPDATE $tblname SET resolution='$resolution' WHERE 1=1;"
-        import_gpkg $2 $p $tblname
+        # set null geometries to empty geometry for country/state
+        #closing_sql="UPDATE $tblname SET geom=ST_GeomFromText('MULTIPOLYGON EMPTY') WHERE geom is NULL;"
+        closing_sql="COMMIT;"
+        import_gpkg $2 $p $tblname $closing_sql
     done <ghaas_spatialunits.txt
 else
     model_short=$(shorten_model $model)
     while read p; do
         tblname=${geography}.${p}_${model_short}_${resolution}
-        import_gpkg $2 $p $tblname
+        closing_sql="COMMIT;"
+        import_gpkg $2 $p $tblname $closing_sql
     done <ghaas_modeloutputs.txt
 fi
