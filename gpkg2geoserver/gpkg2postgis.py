@@ -100,21 +100,29 @@ def import_gpkg(pg_con, gpkg):
         pg_con (str): gdal postgres driver connection string, see https://gdal.org/drivers/vector/pg.html
         gpkg (Path): geopackage file
     """
+
     gpkg_meta = extract_gpkg_meta(gpkg)
     cmds = []
+    postgres_tables = []
+
     if gpkg_meta['is_output']:
         for mo in MODEL_OUTPUTS:
             pg_table_name = '{}.{}_{}_{}'.format(gpkg_meta['geography'], mo, gpkg_meta['model_short'], gpkg_meta['resolution'])
+            postgres_tables.append(pg_table_name)
             cmd = _import_gpkg(pg_con, gpkg, pg_table_name, mo)
-            cmds.append((cmd,pg_table_name))
+            cmds.append(cmd)
     else:
         for su in SPATIAL_UNITS:
             pg_table_name = '{}.{}_{}'.format(gpkg_meta['geography'], su, gpkg_meta['resolution'])
+            postgres_tables.append(pg_table_name)
             cmd = _import_gpkg(pg_con, gpkg, pg_table_name, su)
-            cmds.append((cmd,pg_table_name))
-    for cmd in cmds:
-        sp.run(shlex.split(cmd[0])) #split preserving quoted strings
-        print(cmd[1])
+            cmds.append(cmd)
+
+    for cmd,pg in zip(cmds,postgres_tables):
+        sp.run(shlex.split(cmd)) #split preserving quoted strings
+        print(pg)
+
+    return postgres_tables
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -124,4 +132,4 @@ if __name__ == '__main__':
 
     pg_con = args.pg_con
     gpkg = sanitize_path(args.gpkg)
-    print(import_gpkg(pg_con, gpkg))
+    import_gpkg(pg_con, gpkg)
