@@ -1,10 +1,12 @@
 """Import ghaas geopackage to postgis database
 """
 
-import argparse
 from pathlib import Path
 import subprocess as sp
 import shlex
+
+from .sqlgen import group1_create_pivot, group2_create_pivot
+import itertools 
 
 
 def read_constants():
@@ -61,7 +63,8 @@ def extract_gpkg_meta(gpkg):
     else:
         # Model output geopackage
         model_pt1, model_pt2 = gpkg_info[1].split('+')
-        model_short = '-'.join([MODEL_SHORTNAMES[model_pt1],MODEL_SHORTNAMES[model_pt2]])
+        model_short = '+'.join([MODEL_SHORTNAMES[model_pt1],
+                                MODEL_SHORTNAMES[model_pt2]])
         meta = dict(
             is_output=True,
             geography=gpkg_info[0],
@@ -89,9 +92,11 @@ def _import_gpkg(pg_con, gpkg, table_name, target_gpkg_table):
         -nlt PROMOTE_TO_MULTI \
         -nln {table_name} \
         {gpkg} {target_gpkg_table}'
-    cmd = template.format(pg_con=pg_con, table_name=table_name, gpkg=gpkg, target_gpkg_table=target_gpkg_table)
-    
+    cmd = template.format(pg_con=pg_con, table_name=table_name,
+                          gpkg=gpkg, target_gpkg_table=target_gpkg_table)
+
     return cmd
+
 
 def import_gpkg(pg_con, gpkg):
     """Execute ogr2ogr commands importing all tables from geopackage with renamed tables
@@ -99,7 +104,7 @@ def import_gpkg(pg_con, gpkg):
     Args:
         pg_con (str): gdal postgres driver connection string, see https://gdal.org/drivers/vector/pg.html
         gpkg (Path): geopackage file
-    
+
     Returns:
         list: list of newly created/replaced postgres table names in schema.table form
     """
@@ -110,29 +115,44 @@ def import_gpkg(pg_con, gpkg):
 
     if gpkg_meta['is_output']:
         for mo in MODEL_OUTPUTS:
-            pg_table_name = '{}.{}_{}_{}'.format(gpkg_meta['geography'], mo, gpkg_meta['model_short'], gpkg_meta['resolution'])
+            pg_table_name = '{}."{}_{}_{}"'.format(
+                gpkg_meta['geography'], mo, gpkg_meta['model_short'], gpkg_meta['resolution'])
             postgres_tables.append(pg_table_name)
             cmd = _import_gpkg(pg_con, gpkg, pg_table_name, mo)
             cmds.append(cmd)
     else:
         for su in SPATIAL_UNITS:
-            pg_table_name = '{}.{}_{}'.format(gpkg_meta['geography'], su, gpkg_meta['resolution'])
+            pg_table_name = '{}."{}_{}"'.format(
+                gpkg_meta['geography'], su, gpkg_meta['resolution'])
             postgres_tables.append(pg_table_name)
             cmd = _import_gpkg(pg_con, gpkg, pg_table_name, su)
             cmds.append(cmd)
 
-    for cmd,pg in zip(cmds,postgres_tables):
-        sp.run(shlex.split(cmd)) #split preserving quoted strings
+    for cmd, pg in zip(cmds, postgres_tables):
+        sp.run(shlex.split(cmd))  # split preserving quoted strings
         print(pg)
 
-    return postgres_tables
+    return postgres_tables, gpkg_meta
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument("pg_con", help="postgres gdal driver connection string, \"dbname='databasename' host='addr' port='5432' user='x' password='y'\"")
-    parser.add_argument('gpkg', type=Path, help="GHAAS geopackage file or filepath")
-    args = parser.parse_args()
 
-    pg_con = args.pg_con
-    gpkg = sanitize_path(args.gpkg)
-    import_gpkg(pg_con, gpkg)
+def create_pivot_tables(table_names, gpkg_meta):
+    # determine group 1/2 tables
+    assert(gpkg_meta['is_output'] == True)
+
+    # group annual/monthly variations
+    def group_temporal(x):
+        parts = x.split('.')[1].split('_')
+        exclude_temporal = [x for x,i in enumerate(parts) if i != 2]
+        return '_'.join(exclude_temporal)
+
+    temporal_grouped = itertools.groupby(table_names, group_temporal) 
+  
+    for key, group in temporal_grouped: 
+        key_and_group = {key : list(group)} 
+        print(key_and_group) 
+
+    #group1_create_pivot(schema, output, monthly_table, annual_table, pivot_table_name, year_start=1958, year_end=2019)
+
+    #group2_create_pivot(schema, output, monthly_table, annual_table, pivot_table_name, year_start=1958, year_end=2019)
+    pass
+
