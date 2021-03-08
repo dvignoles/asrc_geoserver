@@ -26,3 +26,10 @@ $$;
 -- zonalmean, min, max
 CREATE TYPE public.zonaloutput
     as (zmean real, zmin real, zmax real);
+
+CREATE TYPE public.model_output_annual_monthly
+    as (annual real, monthly real[]);
+
+CREATE TYPE public.model_output_zonal_annual_monthly
+    as (annual_zonalmean real, annual_zonalmin real, annual_zonalmax real, monthly_zonalmean real[],
+    monthly_zonalmin real[], monthly_zonalmax real[]);
