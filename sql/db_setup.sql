@@ -2,7 +2,7 @@
 -- SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'ghaas';
 -- drop database ghaas;
 -- create database ghaas;
-SET search_path = brazil, public;
+-- SET search_path = brazil, public;
 
 CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS tablefunc;

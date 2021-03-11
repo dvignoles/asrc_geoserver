@@ -821,10 +821,37 @@ FROM bbb_pivot
 INNER JOIN hydrostn30_subbasin_01min hstn on sampleid=hstn.id
 ORDER BY sampleid;
 
----------
-
-
-
-
-
-
+-- Loop over all table name variations
+do
+$$
+    declare
+        measurements text[] :=
+                '{"evapotranspiration","soilmoisture","rainpet","relativesoilmoisture","runoff","snowpack"}';
+        v          text;
+        h_units text[] := '{"subbasin","country","basin","state"}';
+        w           text;
+        chrono text[] := '{"annual","monthly"}';
+        x           text;
+        model_configs text[] := '{"terra+wbm04","terra+wbm19","terra+wbmpr"}';
+        y           text;
+        resolutions text[] := '{"01min","03min"}';
+        z           text;
+    begin
+        FOREACH v in ARRAY measurements
+            LOOP
+                FOREACH w in ARRAY h_units
+                    LOOP
+                        FOREACH x in ARRAY chrono
+                            LOOP
+                                FOREACH y in ARRAY model_configs
+                                    LOOP
+                                        FOREACH z in ARRAY resolutions
+                                            LOOP
+                                                RAISE notice '%_%_%_%_%', v, w, x, y, z;
+                                            end loop;
+                                    end loop;
+                            end loop;
+                    end loop;
+            end loop;
+    end
+$$;
