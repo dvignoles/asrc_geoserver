@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+   geoserver:
+      image: kartoza/geoserver:latest
+      volumes:
+        - /asrc/ecr/danielv/geoserver_volumes/app-schema-tutorial:/opt/geoserver/data_dir
+      ports:
+        - "9991:8080"
+      restart: on-failure
+      env_file:
+        - ../geoserver.env
