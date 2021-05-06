@@ -9,10 +9,8 @@ services:
       volumes:
         - geoserver-data:/opt/geoserver/data_dir
         - /asrc/ecr/danielv/geoserver_volumes/test-data:/opt/geoserver/test-data  
-        - /asrc/ecr/danielv/geoserver_volumes/NEWS:/opt/geoserver/NEWS
-        - /asrc/ecr/danielv/geoserver_volumes/ghaas:/opt/geoserver/ghaas
       ports:
-        - "9999:8080"
+        - "9990:8080"
       restart: on-failure
       env_file:
         - geoserver.env

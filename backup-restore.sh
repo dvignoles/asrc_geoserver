@@ -1,2 +1,5 @@
 #!/bin/bash
-docker run --rm --volumes-from asrc_geoserver_geoserver_1 -v $(pwd):/backup ubuntu bash -c "cd /opt && tar xvf /backup/geoserver_data-dir.tar --strip 1"
+CONTAINER="${1}"
+TARGETBACKUPTAR="${2}"
+
+docker run --rm --volumes-from ${CONTAINER} -v /asrc/ecr/danielv/geoserver_volumes/backups:/backup ubuntu bash -c "cd /opt && tar xvf /backup/${TARGETBACKUPTAR} --strip 1"
