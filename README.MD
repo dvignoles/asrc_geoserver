@@ -24,7 +24,7 @@ $ dock stack deploy -c [docker-compose-file.yml] [stack-name]
 ```
 ## secrets
 
-Docker swarm secrets are used to manage database credentials within the app-schema mapping xml files. 
+Docker swarm secrets are used to manage database credentials within the app-schema mapping xml files (see `testbed`). 
 
 `${postgis.passwd}` 
 
@@ -45,6 +45,9 @@ postgis.passwd = mypass
 [app-schema property interpoloation ref](https://docs.geoserver.org/stable/en/user/data/app-schema/property-interpolation.html)
 
 ## Backup
-The backup*.sh scripts will backup/restore the geoserver-data volume. All customizations the image are stored here. 
+The backup*.sh scripts will backup/restore the geoserver-data volume. All configurations are stored here. 
 
-TODO: Make these scripts not terrible. 
+```
+$ ./backup.sh <container_name> <backup-name>.tar
+$ ./backup-restore.sh <container_name> <backup-name>.tar
+```
